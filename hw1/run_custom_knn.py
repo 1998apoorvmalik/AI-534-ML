@@ -89,6 +89,6 @@ if __name__ == '__main__':
     knn.fit(X_train, y_train)
 
     if args.eval:
-        evaluate_custom_knn(X_train, y_train, X_test, y_test, order=args.order)
+        evaluate_custom_knn(X_train, y_train, X_test, y_test, min_k=args.min_k, max_k=args.max_k, order=args.order)
     else:
-        knn.evaluate(X_test, y_test, min_k=args.min_k, max_k=args.max_k, order=args.order)
+        knn.evaluate(X_test, y_test, order=args.order)
