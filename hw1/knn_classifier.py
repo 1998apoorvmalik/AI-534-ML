@@ -1,6 +1,7 @@
 import numpy as np
 from collections import defaultdict
 
+
 class KNNClassifier():
     def __init__(self, k):
         self.k = k
@@ -8,21 +9,20 @@ class KNNClassifier():
     def fit(self, X_train, y_train):
         self.points = np.array(X_train)
         self.labels = np.array(y_train)
-        
+
     def predict(self, new_points, order=2):
         res = []
         fmap = defaultdict(int)
         for new_point in new_points:
             distances = np.linalg.norm(self.points - new_point, ord=order, axis=1)
             k_min_indices = np.argpartition(distances, self.k)[:self.k]
-            
+
             for idx in k_min_indices:
                 fmap[tuple(self.labels[idx])] += 1
-                
             res.append(max(fmap.items(), key=lambda x: x[1])[0])
             fmap.clear()
         return np.array(res)
-    
+
     def evaluate(self, test_points, test_labels, order=2, verbose=True):
         train_predictions = self.predict(self.points, order=order)
         test_predictions = self.predict(test_points, order=order)
