@@ -1,0 +1,10 @@
+45, Federal-gov
+33, Private
+19, Private
+47, Private
+30, Local-gov
+37, Private
+35, Private
+33, Private
+40, Private
+54, Federal-gov
