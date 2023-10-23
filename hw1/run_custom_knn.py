@@ -15,6 +15,8 @@ parser.add_argument('--test-data', type=str, default='./data/income.test.blind')
 parser.add_argument('--test-output', type=str, default='./data/income.test.predicted')
 parser.add_argument('-k', '--k', type=int, default=41, help='number of nearest neighbors')
 parser.add_argument('-o', '--order', type=int, default=2, help='order of norm')
+parser.add_argument('--min-k', type=int, default=1, help='minimum k for evaluation')
+parser.add_argument('--max-k', type=int, default=101, help='maximum k for evaluation')
 parser.add_argument('--test', action='store_true')
 parser.add_argument('--eval', action='store_true')
 
@@ -89,4 +91,4 @@ if __name__ == '__main__':
     if args.eval:
         evaluate_custom_knn(X_train, y_train, X_test, y_test, order=args.order)
     else:
-        knn.evaluate(X_test, y_test, order=args.order)
+        knn.evaluate(X_test, y_test, min_k=args.min_k, max_k=args.max_k, order=args.order)
